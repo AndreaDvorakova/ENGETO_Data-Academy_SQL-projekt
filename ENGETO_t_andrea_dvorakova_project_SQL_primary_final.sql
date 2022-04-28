@@ -37,8 +37,3 @@ CREATE OR REPLACE TABLE t_andrea_dvorakova_projekt_SQL_primary_final AS
 	ORDER BY cpric.year_czechia_price DESC,
 			czpay.industry_branch_code ASC,
 			cpric.category_code ; 
-	
-
-select *
-FROM economies e 
-WHERE country = 'Czech republic';
