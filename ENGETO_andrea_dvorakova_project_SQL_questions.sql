@@ -1,6 +1,6 @@
 /*
-*DOTAZ: Rostou v prùbìhu let mzdy ve všech odvìtvích, nebo v nìkterıch klesají?
-*ODPVÌÏ: V letech viz. níe podle SQL dotazù mzdy klesají.
+*DOTAZ: Rostou v prÅ¯bÄ›hu let mzdy ve vÅ¡ech odvÄ›tvÃ­ch, nebo v nÄ›kterÃ½ch klesajÃ­?
+*ODPVÄšÄ: V letech viz. nÃ­Å¾e podle SQL dotazÅ¯ mzdy klesajÃ­.
 */
 SELECT
 	vyber.branch_name ,
@@ -25,8 +25,8 @@ FROM(
 WHERE vyber.mzda_mezirocne = 'mezirocni pokles';
 
 /*
-*DOTAZ: Kolik je moné si koupit litrù mléka a kilogramù chleba za první a poslední srovnatelné období v dostupnıch datech cen a mezd?
-*ODPOVÌÏ: Viz. vypis podle SQL doazu níe.
+*DOTAZ: Kolik je moÅ¾nÃ© si koupit litrÅ¯ mlÃ©ka a kilogramÅ¯ chleba za prvnÃ­ a poslednÃ­ srovnatelnÃ© obdobÃ­ v dostupnÃ½ch datech cen a mezd?
+*ODPOVÄšÄ: Viz. vypis podle SQL doazu nÃ­Å¾e.
 */
 
 SELECT *
@@ -45,8 +45,8 @@ WHERE vyber.year_czechia_price = 2006 OR vyber.year_czechia_price = 2018
 ORDER BY vyber.branch_name, vyber.year_czechia_price  ;
 
 /*
-*DOTAZ: Která kategorie potravin zdrauje nejpomaleji (je u ní nejniší percentuální meziroèní nárùst)?
-*ODPOVÌÏ: Nejpomaleji roste cena rostlinného rotíratelného tuku mezi rokem 2008 a 2009. Je to náùst o 0,01%.
+*DOTAZ: KterÃ¡ kategorie potravin zdraÅ¾uje nejpomaleji (je u nÃ­ nejniÅ¾Å¡Ã­ percentuÃ¡lnÃ­ meziroÄnÃ­ nÃ¡rÅ¯st)?
+*ODPOVÄšÄ: Nejpomaleji roste cena rostlinnÃ©ho rotÃ­ratelnÃ©ho tuku mezi rokem 2008 a 2009. Je to nÃ¡Å¯st o 0,01%.
 */
 
 SELECT a.category_code ,
@@ -77,8 +77,8 @@ LIMIT 1
 ;
 
 /*
-*DOTAZ: Existuje rok, ve kterém byl meziroèní nárùst cen potravin vıraznì vyšší ne rùst mezd (vìtší ne 10 %)?
-*ODPOVÌÏ: V ádném roce není vyšší procentuální rùst ne 10%.
+*DOTAZ: Existuje rok, ve kterÃ©m byl meziroÄnÃ­ nÃ¡rÅ¯st cen potravin vÃ½raznÄ› vyÅ¡Å¡Ã­ neÅ¾ rÅ¯st mezd (vÄ›tÅ¡Ã­ neÅ¾ 10 %)?
+*ODPOVÄšÄ: V Å¾Ã¡dnÃ©m roce nenÃ­ vyÅ¡Å¡Ã­ procentuÃ¡lnÃ­ rÅ¯st neÅ¾ 10%.
 */
 
 SELECT b.year_czechia_price ,
@@ -109,9 +109,9 @@ WHERE round((((b.prum_mzda_za_rok * 100)/a.prum_mzda_za_rok_prev) - 100) , 2) > 
 ;
 
 /*
-*OTÁZKA: Má vıška HDP vliv na zmìny ve mzdách a cenách potravin? Neboli, pokud HDP vzroste vıraznìji v jednom roce, 
-*projeví se to na cenách potravin èi mzdách ve stejném nebo násdujícím roce vıraznìjším rùstem?
-*ODPOVÌÏ: V letech 2007, 2008 a 2017 pøi rùstu GDP rostou i ceny a mzdy.
+*OTÃZKA: MÃ¡ vÃ½Å¡ka HDP vliv na zmÄ›ny ve mzdÃ¡ch a cenÃ¡ch potravin? Neboli, pokud HDP vzroste vÃ½raznÄ›ji v jednom roce, 
+*projevÃ­ se to na cenÃ¡ch potravin Äi mzdÃ¡ch ve stejnÃ©m nebo nÃ¡sdujÃ­cÃ­m roce vÃ½raznÄ›jÅ¡Ã­m rÅ¯stem?
+*ODPOVÄšÄ: V letech 2007, 2008 a 2017 pÅ™i rÅ¯stu GDP rostou i ceny a mzdy. VÃ½raznÄ›jÅ¡Ã­ rÅ¯st = vyÅ¡Å¡Ã­ rÅ¯st neÅ¾ prÅ¯mÄ›r.
 */
 
 SELECT b.year_czechia_price ,
