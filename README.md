@@ -47,3 +47,13 @@ Viz. <a
 
 <p>Veškeré odpovědi jsou obsažené v sql: <a
         href="https://github.com/AndreaDvorakova/ENGETO_Data-Academy_SQL-projekt/blob/d43394b155ca7c2576b0e38fd1e7f82bdf3cd587/ENGETO_andrea_dvorakova_project_SQL_questions.sql">ENGETO_t_andrea_dvorakova_project_SQL_questions.sql</a>.</p>
+
+<h3>Odpovědi:</h3>
+
+<ol>
+<li>Celkem ve 23 případech poklesly meziročně mzdy. Z toho v 10 případech se pokles týkal roku 2013. Nejčastěji (4x) se objevilo odvětví Těžba a dobývání. Nejvýznamnější pokles s hodnotou -9 byl v Peněžnictví a pojišťovnictví. Další detail zobrazí sql dotaz v již zmíněném file ENGETO_t_andrea_dvorakova_project_SQL_questions.sql</li>
+<li>SQL dotaz zobrazí seznam jednotlivých odvětví s jejich průměrnou mzdou za roky 2006 a 2008. Dále informace o průměrné ceně chlebu a mléka v těchto letech. Poslední sloupec tabulky pak poskytuje odpověď kolik kg chleba, nebo l mléka je možné koupit za průměrnou mzdu v daném odvětví.</li>
+<li>Nejpomaleji roste cena rostlinného rotíratelného tuku mezi rokem 2008 a 2009. Je to náůst o 0,01%.</li>
+<li>V žádném roce není vyšší procentuální růst než 10%. Největší nárůst cen lze pozorovat v roce 2017 a to 9.63, ale v tom samém roce se mzdy změnily o 6.4 procent. Největší rozdíl (9.66) mezi změnou mezd a cen meziročně byl v roce 2009, kdy mzdy rostli, ale ceny poklesly.</li>
+<li>Pro účely této otázky jsem jako výraznou změnu cen chápeme změny, které jsou nad průměrem meziročních procentuálních změn mezi roky 2006 a 2018. Významný nárůst mezd je pak změna, která je nad průmerem meziročních procentuálních změn ve mzdách od 2006 do 2018. Na základě toho v letech 2007, 2008 a 2017 při růstu GDP rostou ceny a mzdy významně, tj. jsou nad celkovým průměrem.</li>
+</ol>
