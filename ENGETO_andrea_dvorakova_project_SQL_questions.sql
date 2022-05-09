@@ -112,13 +112,13 @@ WHERE round(vyber_prum_rok_2.prum_mzda_za_rok * 100 / vyber_prum_rok_1.prum_mzda
 *ODPOVĚĎ: V letech 2007, 2008 a 2017 při růstu GDP rostou i ceny a mzdy. Výraznější růst = vyšší růst než průměr.
 */
 
-SELECT b.year_czechia_price,
-	round(b.prum_mzda_za_rok * 100 / a.prum_mzda_za_rok_prev - 100, 2) AS mezirocni_mzda,
-	round(b.prum_cena_za_rok * 100 / a.prum_cena_za_rok_prev - 100, 2) AS mezirocni_cena,
-	round(b.GDP * 100 / a.GDP - 100, 2) AS mezirocni_GDP,
-	CASE WHEN round(b.GDP * 100 / a.GDP - 100, 2) > c.celk_prum_GDP 
-		AND round(b.prum_mzda_za_rok * 100 / a.prum_mzda_za_rok_prev - 100, 2) > c.celk_prum_mzda 
-		AND round(b.prum_cena_za_rok * 100 / a.prum_cena_za_rok_prev - 100, 2) > c.celk_prum_cena 
+SELECT vyber_prum_rok_2.year_czechia_price,
+	round(vyber_prum_rok_2.prum_mzda_za_rok * 100 / vyber_prum_rok_1.prum_mzda_za_rok_prev - 100, 2) AS mezirocni_mzda,
+	round(vyber_prum_rok_2.prum_cena_za_rok * 100 / vyber_prum_rok_1.prum_cena_za_rok_prev - 100, 2) AS mezirocni_cena,
+	round(vyber_prum_rok_2.GDP * 100 / vyber_prum_rok_1.GDP - 100, 2) AS mezirocni_GDP,
+	CASE WHEN round(vyber_prum_rok_2.GDP * 100 / vyber_prum_rok_1.GDP - 100, 2) > celk_prum_vyber.celk_prum_GDP 
+		AND round(vyber_prum_rok_2.prum_mzda_za_rok * 100 / vyber_prum_rok_1.prum_mzda_za_rok_prev - 100, 2) > celk_prum_vyber.celk_prum_mzda 
+		AND round(vyber_prum_rok_2.prum_cena_za_rok * 100 / vyber_prum_rok_1.prum_cena_za_rok_prev - 100, 2) > celk_prum_vyber.celk_prum_cena 
 		THEN 'vyrazny'
 	ELSE 'nizky'
 	END AS posouzeni_vlivu
@@ -129,7 +129,7 @@ FROM(
 		GDP
 	FROM t_andrea_dvorakova_projekt_sql_primary_final tadpspf
 	GROUP BY tadpspf.year_czechia_price 
-	) AS b
+	) AS vyber_prum_rok_2
 JOIN(
 	SELECT tadpspf2.year_czechia_price,
 		round(AVG(prum_mzda), 2) AS prum_mzda_za_rok_prev,
@@ -137,13 +137,13 @@ JOIN(
 		GDP
 	FROM t_andrea_dvorakova_projekt_sql_primary_final tadpspf2 
 	GROUP BY tadpspf2.year_czechia_price 
-	) AS a
-ON a.year_czechia_price = b.year_czechia_price - 1
+	) AS vyber_prum_rok_1
+ON vyber_prum_rok_1.year_czechia_price = vyber_prum_rok_2.year_czechia_price - 1
 CROSS JOIN(
 	SELECT 
-		AVG(round(b.prum_mzda_za_rok * 100 / a.prum_mzda_za_rok_prev - 100, 2) AS celk_prum_mzda,
-		AVG(round(b.prum_cena_za_rok * 100 / a.prum_cena_za_rok_prev - 100, 2) AS celk_prum_cena,
-		AVG(round(b.GDP * 100 / a.GDP - 100, 2) AS celk_prum_GDP
+		AVG(round(vyber_prum_rok_2.prum_mzda_za_rok * 100 / vyber_prum_rok_1.prum_mzda_za_rok_prev - 100, 2) AS celk_prum_mzda,
+		AVG(round(vyber_prum_rok_2.prum_cena_za_rok * 100 / vyber_prum_rok_1.prum_cena_za_rok_prev - 100, 2) AS celk_prum_cena,
+		AVG(round(vyber_prum_rok_2.GDP * 100 / vyber_prum_rok_1.GDP - 100, 2) AS celk_prum_GDP
 	FROM(
 		SELECT tadpspf.year_czechia_price,
 			round(AVG(prum_mzda), 2) AS prum_mzda_za_rok,
@@ -151,7 +151,7 @@ CROSS JOIN(
 			GDP
 		FROM t_andrea_dvorakova_projekt_sql_primary_final tadpspf
 		GROUP BY tadpspf.year_czechia_price 
-		) AS b
+		) AS vyber_prum_rok_2
 	JOIN(
 		SELECT tadpspf2.year_czechia_price,
 			round(AVG(prum_mzda), 2) AS prum_mzda_za_rok_prev,
@@ -159,6 +159,6 @@ CROSS JOIN(
 			GDP
 		FROM t_andrea_dvorakova_projekt_sql_primary_final tadpspf2 
 		GROUP BY tadpspf2.year_czechia_price 
-		) AS a
-	ON a.year_czechia_price = b.year_czechia_price - 1) AS c;
+		) AS vyber_prum_rok_1
+	ON vyber_prum_rok_1.year_czechia_price = vyber_prum_rok_2.year_czechia_price - 1) AS celk_prum_vyber;
 
